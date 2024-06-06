@@ -14,7 +14,6 @@ def coletar_dados_poluição():
         nome = input("Digite o nome da área (ou 'sair' para finalizar): ")
         if nome == 'sair':
             break
-        percentual_str = input(f"Digite o percentual de poluição na área {nome}: ")
         percentual = input_numero(f"Digite o percentual de poluição na área {nome}: ")
         areas.append({'nome': nome, 'percentual': percentual})
     return areas
@@ -66,7 +65,7 @@ for i, oceano in enumerate(oceanos):
     print(f"{i + 1}. {oceano}")
 
 oceano_escolhido = input_numero("Digite o número correspondente ao oceano: ")
-while oceano_escolhido not in range(1, len(oceanos) + 1):
+while oceano_escolhido not in list(range(1, len(oceanos) + 1)):
     print("Por favor, insira um número válido.")
     oceano_escolhido = input_numero("Digite o número correspondente ao oceano: ")
 
@@ -76,15 +75,7 @@ total_plastico = input_numero("Digite a quantidade total de plástico no oceano 
 # Coletar dados de poluição em diferentes áreas
 areas = coletar_dados_poluição()
 
-# Adição de uma nova área
-areas.append({'nome': 'Nova Área', 'percentual': 20})
 
-# Remoção da primeira área
-areas.pop(0)
-
-# Concatenação de duas listas de áreas
-outras_areas = [{'nome': 'Área X', 'percentual': 30}, {'nome': 'Área Y', 'percentual': 40}]
-areas.extend(outras_areas)
 
 # Iteração sobre os elementos das áreas
 print("\n--- Lista de Áreas ---")
