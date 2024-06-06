@@ -65,12 +65,13 @@ print("Escolha um dos oceanos:")
 for i, oceano in enumerate(oceanos):
     print(f"{i + 1}. {oceano}")
 
-oceano_escolhido = oceano_escolhido = input_numero("Digite o número correspondente ao oceano: ")
+oceano_escolhido = input_numero("Digite o número correspondente ao oceano: ")
 while oceano_escolhido not in range(1, len(oceanos) + 1):
     print("Por favor, insira um número válido.")
     oceano_escolhido = input_numero("Digite o número correspondente ao oceano: ")
 
-total_plastico_str = input_numero("Digite a quantidade total de plástico no oceano (em toneladas): ")
+total_plastico = input_numero("Digite a quantidade total de plástico no oceano (em toneladas): ")
+
 
 # Coletar dados de poluição em diferentes áreas
 areas = coletar_dados_poluição()
