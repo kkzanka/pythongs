@@ -6,21 +6,23 @@ def input_numero(mensagem):
         else:
             print("Por favor, insira um número válido.")
 
-
 def coletar_dados_poluição():
-
+    percentual_restante = 100
     areas = []
-    while True:
-        nome = input("Digite o nome da área (ou 'sair' para finalizar): ")
-        if nome == 'sair':
-            break
-        percentual = input_numero(f"Digite o percentual de poluição na área {nome}: ")
-        areas.append({'nome': nome, 'percentual': percentual})
+    if percentual_restante > 0:
+        while True:
+            nome = input("Digite o nome da área (ou 'sair' para finalizar): ")
+            if nome == 'sair':
+                break
+            percentual = input_numero(f"Digite o percentual de poluição na área {nome}: ")
+            novo_restante = percentual_restante - percentual
+            if novo_restante - percentual < 0:
+                percentual = input(f'Valor invalido, o percentua de area restante disponive para coleta é de {novo_restante}')
+            areas.append({'nome': nome, 'percentual': percentual})
+            
     return areas
 
-
 def calcular_coleta(total_plastico, areas):
-
     coleta_por_area = []
     for area in areas:
         coletado = total_plastico * area['percentual'] / 100
@@ -58,6 +60,8 @@ def exibir_relatorio(total_plastico, coleta_por_area, reducao, prejuizo_economic
     print(f"Prejuízo econômico evitado: {prejuizo_economico_evitar:.2f}")
     print(f"Vidas marinhas salvas: {vidas_salvas}")
 
+
+
 # Entrada de dados pelo usuário
 oceanos = ["Atlântico", "Pacífico", "Índico", "Ártico", "Antártico", "Sul", "Norte"]
 print("Escolha um dos oceanos:")
@@ -71,11 +75,11 @@ while oceano_escolhido not in list(range(1, len(oceanos) + 1)):
 
 total_plastico = input_numero("Digite a quantidade total de plástico no oceano (em toneladas): ")
 
-
 # Coletar dados de poluição em diferentes áreas
 areas = coletar_dados_poluição()
 
-
+# Adição de uma nova área
+areas.append({'nome': 'Areas não selecionadas', 'percentual': 20})
 
 # Iteração sobre os elementos das áreas
 print("\n--- Lista de Áreas ---")
