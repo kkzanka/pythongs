@@ -1,36 +1,27 @@
-def coletar_dados_poluição():
-    """
-    Coleta dados de poluição plástica em diferentes áreas do oceano através de entradas do usuário.
+def input_numero(mensagem):
+    while True:
+        entrada = input(mensagem)
+        if entrada.isnumeric():
+            return int(entrada)
+        else:
+            print("Por favor, insira um número válido.")
 
-    Returns:
-        list of dict: Lista de dicionários com informações das áreas de coleta.
-                      Cada dicionário contém 'nome' (str) e 'percentual' (int).
-    """
+
+def coletar_dados_poluição():
+
     areas = []
     while True:
         nome = input("Digite o nome da área (ou 'sair' para finalizar): ")
         if nome == 'sair':
             break
         percentual_str = input(f"Digite o percentual de poluição na área {nome}: ")
-        while not percentual_str.isnumeric():
-            print("Por favor, insira um número válido.")
-            percentual_str = input(f"Digite o percentual de poluição na área {nome}: ")
-        percentual = int(percentual_str)
+        percentual = input_numero(f"Digite o percentual de poluição na área {nome}: ")
         areas.append({'nome': nome, 'percentual': percentual})
     return areas
 
+
 def calcular_coleta(total_plastico, areas):
-    """
-    Calcula a quantidade de plástico coletado em diferentes áreas.
 
-    Args:
-        total_plastico (int): Quantidade total de plástico no oceano (em toneladas).
-        areas (list of dict): Lista de dicionários com informações das áreas de coleta.
-                              Cada dicionário deve conter 'nome' (str) e 'percentual' (int).
-
-    Returns:
-        list of dict: Lista de dicionários com a quantidade de plástico coletado por área.
-    """
     coleta_por_area = []
     for area in areas:
         coletado = total_plastico * area['percentual'] / 100
@@ -38,59 +29,26 @@ def calcular_coleta(total_plastico, areas):
     return coleta_por_area
 
 def calcular_total_coletado(coleta_por_area):
-    """
-    Calcula a quantidade total de plástico coletado.
-
-    Args:
-        coleta_por_area (list of dict): Lista de dicionários com a quantidade de plástico coletado por área.
-
-    Returns:
-        int: Quantidade total de plástico coletado (em toneladas).
-    """
+ 
     total_coletado = 0
     for area in coleta_por_area:
         total_coletado += area['coletado']
     return total_coletado
 
 def calcular_reducao(total_plastico, total_coletado):
-    """
-    Calcula a redução percentual da poluição de plástico no oceano.
 
-    Args:
-        total_plastico (int): Quantidade total de plástico no oceano (em toneladas).
-        total_coletado (int): Quantidade total de plástico coletado (em toneladas).
-
-    Returns:
-        float: Percentual de redução da poluição.
-    """
     reducao = (total_coletado / total_plastico) * 100
     return reducao
 
 def calcular_vidas_marinhas_salvas(total_coletado):
-    """
-    Estima o número de vidas marinhas salvas com base na quantidade de plástico coletado.
 
-    Args:
-        total_coletado (int): Quantidade total de plástico coletado (em toneladas).
-
-    Returns:
-        int: Número estimado de vidas marinhas salvas.
-    """
     vidas_salvas_por_tonelada = 10  # Estimativa fictícia de vidas marinhas salvas por tonelada de plástico coletado
     vidas_salvas = int(total_coletado * vidas_salvas_por_tonelada)
     return vidas_salvas
 
 def exibir_relatorio(total_plastico, coleta_por_area, reducao, prejuizo_economico_evitar, vidas_salvas):
-    """
-    Exibe um relatório detalhado com os resultados da coleta de plástico.
 
-    Args:
-        total_plastico (int): Quantidade total de plástico no oceano (em toneladas).
-        coleta_por_area (list of dict): Lista de dicionários com a quantidade de plástico coletado por área.
-        reducao (float): Percentual de redução da poluição.
-        prejuizo_economico_evitar (float): Prejuízo econômico evitado.
-        vidas_salvas (int): Número estimado de vidas marinhas salvas.
-    """
+
     print("\n--- Relatório da Coleta de Plástico ---")
     print(f"Total de plástico no oceano: {total_plastico} toneladas")
     for area in coleta_por_area:
@@ -107,16 +65,12 @@ print("Escolha um dos oceanos:")
 for i, oceano in enumerate(oceanos):
     print(f"{i + 1}. {oceano}")
 
-oceano_escolhido = input("Digite o número correspondente ao oceano: ")
-while not oceano_escolhido.isnumeric() or int(oceano_escolhido) not in range(1, len(oceanos) + 1):
+oceano_escolhido = oceano_escolhido = input_numero("Digite o número correspondente ao oceano: ")
+while oceano_escolhido not in range(1, len(oceanos) + 1):
     print("Por favor, insira um número válido.")
-    oceano_escolhido = input("Digite o número correspondente ao oceano: ")
+    oceano_escolhido = input_numero("Digite o número correspondente ao oceano: ")
 
-total_plastico_str = input("Digite a quantidade total de plástico no oceano (em toneladas): ")
-while not total_plastico_str.isnumeric():
-    print("Por favor, insira um número válido.")
-    total_plastico_str = input("Digite a quantidade total de plástico no oceano (em toneladas): ")
-total_plastico = int(total_plastico_str)
+total_plastico_str = input_numero("Digite a quantidade total de plástico no oceano (em toneladas): ")
 
 # Coletar dados de poluição em diferentes áreas
 areas = coletar_dados_poluição()
