@@ -59,4 +59,4 @@ Este projeto implementa um sistema de coleta de dados e cálculo de impacto ambi
   ```
   python3 nome_do_script.py
   ```
-Espero que isso ajude! Se você tiver mais perguntas ou precisar de mais assistência, fique à vontade para perguntar.
+
