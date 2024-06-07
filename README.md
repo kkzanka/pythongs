@@ -1,5 +1,9 @@
 # PYTHON-GS
-Claro, aqui está o README.md formatado para o GitHub:
+
+# Integrantes
+- Felipe Paes de Barros Muller Carioba, RM: 558447
+- Djalma Moreira de Andrade Filho, RM: 555530
+- Carlos Eduardo dos Santos Ribeiro Filho, RM: 556785
 
 
 # Projeto de Coleta de Plástico nos Oceanos
