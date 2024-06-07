@@ -34,8 +34,11 @@ def calcular_coleta(total_plastico, areas):
     return coleta_por_area
 
 def calcular_total_coletado(coleta_por_area):
-    total_coletado = sum(area['coletado'] for area in coleta_por_area)
+    total_coletado = 0
+    for area in coleta_por_area:
+        total_coletado += area['coletado']
     return total_coletado
+
 
 def calcular_reducao(total_plastico, total_coletado):
     reducao = (total_coletado / total_plastico) * 100
