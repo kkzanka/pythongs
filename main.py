@@ -24,7 +24,7 @@ def coletar_dados_poluição():
         areas.append({'nome': nome, 'percentual': percentual})
         porcentagem_utilizada += percentual
 
-    return areas
+    return areas, porcentagem_utilizada
 
 def calcular_coleta(total_plastico, areas):
     coleta_por_area = []
@@ -77,9 +77,9 @@ while oceano_escolhido not in list(range(1, len(oceanos) + 1)):
 total_plastico = input_numero("Digite a quantidade total de plástico no oceano (em toneladas): ")
 
 # Coletar dados de poluição em diferentes áreas
-areas = coletar_dados_poluição()
+areas, porcentagem_utilizada = coletar_dados_poluição()
 
-percentual_restante = 100 - sum(area['percentual'] for area in areas)
+percentual_restante = 100 - porcentagem_utilizada
 
 # Iteração sobre os elementos das áreas
 print("\n--- Lista de Áreas ---")
