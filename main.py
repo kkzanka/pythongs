@@ -100,3 +100,5 @@ vidas_salvas = calcular_vidas_marinhas_salvas(total_coletado)
 
 # Exibir relatório
 exibir_relatorio(total_plastico, coleta_por_area, reducao, prejuizo_economico_evitar, vidas_salvas, percentual_restante)
+
+print(1+1)
